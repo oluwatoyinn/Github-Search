@@ -13,36 +13,32 @@ import FusionCharts from "fusioncharts";
 import Column2D from "fusioncharts/fusioncharts.charts";
 
 // Include the theme as fusion
-import FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
+import FusionTheme from "fusioncharts/themes/fusioncharts.theme.candy";
 
 // Adding the chart and theme as dependency to the core fusioncharts
 ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
 
 // STEP 2 - Chart Data
 
-
 // STEP 3 - Creating the JSON object to store the chart configurations
 
 const ChartComponent = ({data}) =>{
   const chartConfigs = {
-    type: "column2d", // The chart type
-    width: "400", // Width of the chart
+    type: "doughnut2d", // The chart type
+    width: "100%", // Width of the chart
     height: "400", // Height of the chart
     dataFormat: "json", // Data type
     dataSource: {
       // Chart Configuration
       chart: {
         //Set the chart caption
-        caption: "Countries With Most Oil Reserves [2017-18]",
-        //Set the chart subcaption
-        subCaption: "In MMbbl = One Million barrels",
-        //Set the x-axis name
-        xAxisName: "Country",
-        //Set the y-axis name
-        yAxisName: "Reserves (MMbbl)",
-        numberSuffix: "K",
+        caption: "Stars Per Language",
+        decimals:0,
+        pieRadius:'45%',
+        showPercentValues:0,
         //Set the theme for your chart
-        theme: "fusion"
+        theme: "candy"
+        // palleteColors:
       },
       // Chart Data
       data
@@ -53,6 +49,5 @@ const ChartComponent = ({data}) =>{
     return <ReactFC {...chartConfigs} />
 }
 // STEP 4 - Creating the DOM element to pass the react-fusioncharts component
-
 
 export default ChartComponent;
