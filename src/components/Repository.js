@@ -4,6 +4,8 @@ import { GithubContext } from './context/context';
 import ReposCharts from  "./FusionCharts/ReposCharts"
 import Pie3dChart from './FusionCharts/Pie3dChart'
 import DoughnutChart from './FusionCharts/DoughnutStarChart'
+import PopularRepos from './FusionCharts/Column3dPopularChart'
+import ForkedRepos from './FusionCharts/Bar3dForkedChart'
 import styled from 'styled-components'
 
 
@@ -33,27 +35,42 @@ const Repository = () => {
      }).slice(0,5)
     //  console.log(mostPopular);
 
-    const chartData = [
-      {
-        label: "JavaScript",
-        value: "80"
-      },
-      {
-        label: "CSS",
-        value: "130"
-      },
-      {
-        label: "HTML",
-        value: "30"
-      },
-    ];
+
+    // forks
+     let {stars, forks} = githubRepos.reduce((total, item)=>{
+       const {stargazers_count, name, forks} = item
+       total.stars[stargazers_count] = {label:name, value:stargazers_count}
+       total.forks[forks] = {label:name, value:forks}
+        return total
+     },{
+       stars:{}, forks:{}
+     })
+
+     stars = Object.values(stars).slice(-5).reverse()
+     forks = Object.values(forks).slice(-5).reverse()
+
+     
+    // const chartData = [
+    //   {
+    //     label: "JavaScript",
+    //     value: "80"
+    //   },
+    //   {
+    //     label: "CSS",
+    //     value: "130"
+    //   },
+    //   {
+    //     label: "HTML", 
+    //     value: "30"
+    //   },
+    // ];
 
     return <section className="section">
-      <Wrapper className="section-center">
-        <Pie3dChart data={mostUsedLanguage} />
-        <div></div>
-        <DoughnutChart data={mostPopular} /> 
-        <div></div>
+      <Wrapper className=" section-center">
+          <Pie3dChart data={mostUsedLanguage} />
+          <PopularRepos data={stars} />
+          <DoughnutChart data={mostPopular} /> 
+          <ForkedRepos data={forks} />
       </Wrapper>
     </section>
     
