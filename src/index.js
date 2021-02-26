@@ -4,12 +4,23 @@ import './index.css';
 import App from './App';
 import {GithubProvider} from './components/context/context'
 import reportWebVitals from './reportWebVitals';
+import {Auth0Provider} from '@auth0/auth0-react'
+
+// ovatech.us.auth0.com
+// NgibZz9IOsqYSHcBNhK3smtttZnIbZgx
 
 ReactDOM.render(
   <React.StrictMode>
-    <GithubProvider>
-      <App />
-    </GithubProvider>
+    <Auth0Provider
+       domain="ovatech.us.auth0.com"
+       clientId="NgibZz9IOsqYSHcBNhK3smtttZnIbZgx"
+       redirectUri={window.location.origin}
+       cacheLocation='localstorage'
+    >
+      <GithubProvider>
+        <App />
+      </GithubProvider>
+    </Auth0Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
