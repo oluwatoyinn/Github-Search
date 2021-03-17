@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Image  from '../components/images/login.svg'
+import Image1  from '../components/images/office.jpg'
 import { useAuth0 } from '@auth0/auth0-react'
 
 
@@ -9,8 +10,8 @@ const Login =() => {
     
     return <Wrapper>
         <div className="container">
-            <img src={Image} alt="github user"/>
-            <h1>github user</h1>
+            <img src={Image1} alt="github user"/>
+            <h1>find a github user</h1>
             <button className="btn" onClick={loginWithRedirect}>Sign up</button>
         </div>
     </Wrapper> 
